@@ -1,16 +1,25 @@
-# React + Vite
+# SQL Practice Hospital 🏥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un portafolio interactivo de SQL diseñado para demostrar habilidades técnicas en el manejo de bases de datos relacionales sin necesidad de un backend tradicional.
 
-Currently, two official plugins are available:
+## 🛠 Tecnologías
+- **Frontend:** React 19 + Vite
+- **Motor SQL:** `sql.js` (SQLite en WebAssembly para ejecución en el navegador)
+- **Editor:** `@monaco-editor/react` (Experiencia tipo VS Code)
+- **Estilos:** CSS nativo con variables de diseño personalizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🏗 Arquitectura
+Este proyecto utiliza una arquitectura **serverless**. La base de datos SQLite (`.sqlite`) se carga directamente en el navegador, permitiendo a los usuarios ejecutar consultas SQL en tiempo real sin riesgos de seguridad ni costos de servidor.
 
-## React Compiler
+## 🚀 Roadmap de Desarrollo
+- [x] Configuración inicial del entorno (Vite + React)
+- [x] Repositorio en GitHub configurado
+- [ ] Implementación de `useDatabase.js` (Conexión con SQL.js)
+- [ ] Integración de Editor de código (Monaco)
+- [ ] Creación de lecciones SQL didácticas
+- [ ] Despliegue en Firebase Hosting
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💻 Cómo ejecutarlo localmente
+1. Clona el repositorio.
+2. Instala dependencias: `npm install`
+3. Inicia el servidor de desarrollo: `npm run dev`
