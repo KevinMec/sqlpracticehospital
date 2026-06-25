@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="portfolio.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="118"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title=".Navegables" custom_title="0" dock_id="2" table="0,10:Navegables"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000ffffffff0000011e00ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- Estructura de la base de datos del Hospital
+
+-- 1. Tabla de Especialidades
+CREATE TABLE Especialidades (
+    id_especialidad INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    piso INTEGER NOT NULL
+);
+
+-- 2. Tabla de Médicos
+CREATE TABLE Medicos (
+    id_medico INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    id_especialidad INTEGER,
+    salario DECIMAL(10, 2) NOT NULL,
+    fecha_contratacion DATE,
+    FOREIGN KEY (id_especialidad) REFERENCES Especialidades(id_especialidad)
+);
+
+-- 3. Tabla de Pacientes
+CREATE TABLE Pacientes (
+    id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    genero VARCHAR(15)
+);
+
+-- 4. Tabla de Citas
+CREATE TABLE Citas (
+    id_cita INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_paciente INTEGER,
+    id_medico INTEGER,
+    fecha_cita DATETIME NOT NULL,
+    diagnostico TEXT,
+    estado VARCHAR(20) DEFAULT 'Programada',
+    FOREIGN KEY (id_paciente) REFERENCES Pacientes(id_paciente),
+    FOREIGN KEY (id_medico) REFERENCES Medicos(id_medico)
+);
+
+-- Inserción de datos de prueba
+INSERT INTO Especialidades (nombre, piso) VALUES 
+('Cardiología', 3),
+('Pediatría', 2),
+('Neurología', 4),
+('Urgencias', 1);
+
+INSERT INTO Medicos (nombre, id_especialidad, salario, fecha_contratacion) VALUES 
+('Dr. Roberto Santos', 1, 6500.00, '2015-04-12'),
+('Dra. Elena Medina', 2, 5800.00, '2018-09-01'),
+('Dr. Hugo Silva', 3, 7200.00, '2012-11-20'),
+('Dra. Carmen Ruiz', 4, 6000.00, '2020-03-15'),
+('Dr. Luis Gómez', 2, 5500.00, '2021-01-10');
+
+INSERT INTO Pacientes (nombre, fecha_nacimiento, genero) VALUES 
+('Ana García', '1995-08-22', 'Femenino'),
+('Carlos López', '1982-11-05', 'Masculino'),
+('Sofía Martínez', '2015-03-14', 'Femenino'),
+('Javier Torres', '1970-01-30', 'Masculino'),
+('María Fernández', '2000-12-10', 'Femenino');
+
+INSERT INTO Citas (id_paciente, id_medico, fecha_cita, diagnostico, estado) VALUES 
+(1, 4, '2026-06-20 10:00:00', 'Dolor abdominal agudo', 'Completada'),
+(2, 1, '2026-06-22 11:30:00', 'Revisión presión arterial', 'Completada'),
+(3, 2, '2026-06-25 09:00:00', 'Vacunación de rutina', 'Programada'),
+(4, 3, '2026-06-26 16:00:00', 'Migraña crónica', 'Programada'),
+(5, 5, '2026-06-24 12:00:00', NULL, 'Cancelada'),
+(1, 1, '2026-07-01 10:00:00', NULL, 'Programada');</sql><current_tab id="0"/></tab_sql></sqlb_project>
